@@ -1,0 +1,11 @@
+idea
+.php_cs
+.php_cs.cache
+.php-cs-fixer.cache
+.phpunit.result.cache
+build
+psalm.xml
+node_modules
+.pnpm-debug.log
+**/node_modules
+src/vitepress/dist
