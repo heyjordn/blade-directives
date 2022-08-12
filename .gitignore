@@ -8,4 +8,4 @@ psalm.xml
 node_modules
 .pnpm-debug.log
 **/node_modules
-src/vitepress/dist
+.vitepress/dist
