@@ -2,7 +2,7 @@
 <h2 align="center">Blade Directives</h2>
 
 <p align="center">
-  <a href="https://laravel-vite.dev"><img alt="docs" src="https://img.shields.io/badge/documentation-online-blue?logo=readthedocs&logoColor=white"></a>
+  <a href="https://heyjordn.github.io/blade-directives/"><img alt="docs" src="https://img.shields.io/badge/documentation-online-blue?logo=readthedocs&logoColor=white"></a>
 </p>
 <br />
 
