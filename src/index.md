@@ -1,4 +1,12 @@
+---
+page: true
+sidebar: true
+title: Blade Directives - A reference of core and third party blade template directives
+---
+
 # Core Directives
+
+[Laravel Blade Directives](https://laravel.com/docs/9.x/blade#blade-directives) are pretty useful methods for working with Laravel views, this is a quick reference to all core directives.
 
 <style>
     /* Thanks to https://raw.githubusercontent.com/laravel/docs/9.x/collections.md for this neat way to display columns */
@@ -19,35 +27,34 @@
 [@elseif](#directive-if)
 [@else](#directive-if)
 [@unless](#directive-unless)
-[@isset]()
-[@empty]()
-[@auth]()
-[@guest]()
-[@production]()
-[@hasSection]()
-[@sectionMissing]()
-[@switch]()
-[@for]()
-[@foreach]()
-[@while]()
-[@continue]()
-[@break]()
-[@php]()
-[@class]()
-[@checked]()
-[@selected]()
-[@disabled]()
-[@readonly]()
-[@required]()
-[@include]()
-[@includeIf]()
-[@includeWhen]()
-[@includeUnless]()
-[@includeFirst]()
-[@each]()
-[@once]()
-[@pushOnce]()
-[@verbatim]()
+[@isset](#directive-isset)
+[@empty](#directive-empty)
+[@auth](#directive-auth)
+[@guest](#directive-guest)
+[@production](#directive-production)
+[@hasSection](#directive-hasSection)
+[@sectionMissing](#directive-sectionMissing)
+[@switch](#directive-switch)
+[@for](#directive-for)
+[@foreach](#directive-foreach)
+[@while](#directive-while)
+[@continue](#directive-continue)
+[@break](#directive-break)
+[@class](#directive-class)
+[@checked](#directive-checked)
+[@selected](#directive-selected)
+[@disabled](#directive-disabled)
+[@readonly](#directive-readonly)
+[@required](#directive-required)
+[@include](#directive-include)
+[@includeIf](#directive-includeIf)
+[@includeWhen](#directive-includeWhen)
+[@includeUnless](#directive-includeUnless)
+[@includeFirst](#directive-includeFirst)
+[@each](#directive-each)
+[@once](#directive-once)
+[@pushOnce](#directive-pushOnce)
+[@verbatim](#directive-verbatim)
 
 </div>
 
@@ -75,14 +82,348 @@
 @endunless
 ```
 
+<a id="directive-isset"></a>
+
+#### `@isset` {.directive-method .first-directive-method}
+
 ```php
 @isset($records)
     // $records is defined and is not null...
 @endisset
 ```
 
+<a id="directive-empty"></a>
+
+#### `@empty` {.directive-method .first-directive-method}
+
 ```php
 @empty($records)
     // $records is "empty"...
 @endempty
+```
+
+<a id="directive-auth"></a>
+
+#### `@auth` {.directive-method .first-directive-method}
+
+```php
+@auth
+    // The user is authenticated...
+@endauth
+```
+
+<a id="directive-guest"></a>
+
+#### `@guest` {.directive-method .first-directive-method}
+
+```php 
+@guest
+    // The user is not authenticated...
+@endguest
+```
+
+<a id="directive-production"></a>
+
+#### `@production` {.directive-method .first-directive-method}
+
+```php
+@production
+    // Production specific content...
+@endproduction
+
+@env('staging')
+    // The application is running in "staging"...
+@endenv
+ 
+@env(['staging', 'production'])
+    // The application is running in "staging" or "production"...
+@endenv
+```
+
+<a id="directive-hasSection"></a>
+
+#### `@hasSection` {.directive-method .first-directive-method}
+
+```php
+@hasSection('navigation')
+    <div class="pull-right">
+        @yield('navigation')
+    </div>
+ 
+    <div class="clearfix"></div>
+@endif
+```
+
+<a id="directive-sectionMissing"></a>
+
+#### `@sectionMissing` {.directive-method .first-directive-method}
+
+```php
+@sectionMissing('navigation')
+    <div class="pull-right">
+        @include('default-navigation')
+    </div>
+@endif
+```
+
+<a id="directive-switch"></a>
+
+#### `@switch` {.directive-method .first-directive-method}
+
+```php
+@switch($i)
+    @case(1)
+        First case...
+        @break
+ 
+    @case(2)
+        Second case...
+        @break
+ 
+    @default
+        Default case...
+@endswitch
+```
+
+<a id="directive-for"></a>
+
+#### `@for` {.directive-method .first-directive-method}
+
+```php
+@for ($i = 0; $i < 10; $i++)
+    The current value is {{ $i }}
+@endfor
+```
+
+<a id="directive-foreach"></a>
+
+#### `@foreach` {.directive-method .first-directive-method}
+
+```php
+@foreach ($users as $user)
+    <p>This is user {{ $user->id }}</p>
+@endforeach
+```
+
+<a id="directive-forelse"></a>
+
+#### `@forelse` {.directive-method .first-directive-method}
+
+```php 
+@forelse ($users as $user)
+    <li>{{ $user->name }}</li>
+@empty
+    <p>No users</p>
+@endforelse
+```
+
+<a id="directive-while"></a>
+
+#### `@while` {.directive-method .first-directive-method}
+
+```php 
+@while (true)
+    <p>I'm looping forever.</p>
+@endwhile
+```
+
+<a id="directive-continue"></a>
+
+#### `@continue` {.directive-method .first-directive-method}
+
+```php
+@foreach ($users as $user)
+    @if ($user->type == 1)
+        @continue
+    @endif
+ 
+    <li>{{ $user->name }}</li>
+ 
+    @if ($user->number == 5)
+        @break
+    @endif
+@endforeach
+```
+
+<a id="directive-break"></a>
+
+#### `@break` {.directive-method .first-directive-method}
+
+```php
+@foreach ($users as $user)
+    @continue($user->type == 1)
+ 
+    <li>{{ $user->name }}</li>
+ 
+    @break($user->number == 5)
+@endforeach
+```
+
+<a id="directive-class"></a>
+
+#### `@class` {.directive-method .first-directive-method}
+
+```php
+@php
+    $isActive = false;
+    $hasError = true;
+@endphp
+ 
+<span @class([
+    'p-4',
+    'font-bold' => $isActive,
+    'text-gray-500' => ! $isActive,
+    'bg-red' => $hasError,
+])></span>
+ 
+<span class="p-4 text-gray-500 bg-red"></span>
+```
+
+<a id="directive-checked"></a>
+
+#### `@checked` {.directive-method .first-directive-method}
+
+```php
+<input type="checkbox"
+        name="active"
+        value="active"
+        @checked(old('active', $user->active)) />
+```
+
+<a id="directive-selected"></a>
+
+#### `@selected` {.directive-method .first-directive-method}
+
+```php
+<select name="version">
+    @foreach ($product->versions as $version)
+        <option value="{{ $version }}" @selected(old('version') == $version)>
+            {{ $version }}
+        </option>
+    @endforeach
+</select>
+```
+
+<a id="directive-disabled"></a>
+
+#### `@disabled` {.directive-method .first-directive-method}
+
+```php
+<button type="submit" @disabled($errors->isNotEmpty())>Submit</button>
+```
+
+<a id="directive-readonly"></a>
+
+#### `@readonly` {.directive-method .first-directive-method}
+
+```php
+<input type="email"
+        name="email"
+        value="email@laravel.com"
+        @readonly($user->isNotAdmin()) />
+```
+
+<a id="directive-required"></a>
+
+#### `@required` {.directive-method .first-directive-method}
+
+```php
+<input type="text"
+        name="title"
+        value="title"
+        @required($user->isAdmin()) />
+```
+
+<a id="directive-include"></a>
+
+#### `@include` {.directive-method .first-directive-method}
+
+```php
+<div>
+    @include('shared.errors')
+ 
+    <form>
+        <!-- Form Contents -->
+    </form>
+</div>
+```
+
+<a id="directive-includeIf"></a>
+
+#### `@includeIf` {.directive-method .first-directive-method}
+
+```php
+@includeIf('view.name', ['status' => 'complete'])
+```
+
+<a id="directive-includeWhen"></a>
+
+#### `@includeWhen` {.directive-method .first-directive-method}
+
+
+```php
+@includeWhen($boolean, 'view.name', ['status' => 'complete'])
+
+```
+
+<a id="directive-includeUnless"></a>
+
+#### `@includeUnless` {.directive-method .first-directive-method}
+
+```php
+@includeUnless($boolean, 'view.name', ['status' => 'complete'])
+
+```
+
+<a id="directive-includeFirst"></a>
+
+#### `@includeFirst` {.directive-method .first-directive-method}
+
+```php
+@includeFirst(['custom.admin', 'admin'], ['status' => 'complete'])
+```
+
+<a id="directive-each"></a>
+
+#### `@each` {.directive-method .first-directive-method}
+
+```php
+@each('view.name', $jobs, 'job')
+@each('view.name', $jobs, 'job', 'view.empty')
+```
+
+<a id="directive-once"></a>
+
+#### `@once` {.directive-method .first-directive-method}
+
+```php
+@once
+    @push('scripts')
+        <script>
+            // Your custom JavaScript...
+        </script>
+    @endpush
+@endonce
+```
+<a id="directive-pushOnce"></a>
+
+#### `@pushOnce` {.directive-method .first-directive-method}
+
+```php
+@pushOnce('scripts')
+    <script>
+        // Your custom JavaScript...
+    </script>
+@endPushOnce
+```
+<a id="directive-verbatim"></a>
+
+#### `@verbatim` {.directive-method .first-directive-method}
+
+```php
+@verbatim
+    <div class="container">
+        Hello, {{ name }}.
+    </div>
+@endverbatim
 ```
