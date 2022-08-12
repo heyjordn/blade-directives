@@ -2,7 +2,7 @@
 const production = process.env.NODE_ENV === 'production'
 const title = 'Blade Directives'
 const description = 'A quick reference of Laravel Blade Directives'
-const site = production ? 'https://heyjordn.github.io/blade-directives' : 'http://localhost:3005'
+const site = production ? 'https://blade-directives.vercel.app/' : 'http://localhost:3005'
 
 
 export default {
