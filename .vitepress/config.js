@@ -2,11 +2,12 @@
 const production = process.env.NODE_ENV === 'production'
 const title = 'Blade Directives'
 const description = 'A quick reference of Laravel Blade Directives'
-const site = production ? 'https://laravel-vite.dev' : 'http://localhost:3005'
+const site = production ? 'https://heyjordn.github.io/blade-directives' : 'http://localhost:3005'
 
 
 export default {
 	title,
+	base: '/',
 	head: [
 		['meta', { name: 'author', content: 'Jordan Jones' }],
 		['meta', { name: 'keywords', content: 'laravel, blade, directives, templates, php' }],
