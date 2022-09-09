@@ -62,7 +62,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@if` {.directive-method .first-directive-method}
 
-```php
+```blade
 @if (count($records) === 1)
     I have one record!
 @elseif (count($records) > 1)
@@ -76,7 +76,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@unless`  {.directive-method .first-directive-method}
 
-```php
+```blade
 @unless (Auth::check())
     You are not signed in.
 @endunless
@@ -86,7 +86,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@isset` {.directive-method .first-directive-method}
 
-```php
+```blade
 @isset($records)
     // $records is defined and is not null...
 @endisset
@@ -96,7 +96,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@empty` {.directive-method .first-directive-method}
 
-```php
+```blade
 @empty($records)
     // $records is "empty"...
 @endempty
@@ -106,7 +106,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@auth` {.directive-method .first-directive-method}
 
-```php
+```blade
 @auth
     // The user is authenticated...
 @endauth
@@ -116,7 +116,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@guest` {.directive-method .first-directive-method}
 
-```php 
+```blade 
 @guest
     // The user is not authenticated...
 @endguest
@@ -126,7 +126,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@production` {.directive-method .first-directive-method}
 
-```php
+```blade
 @production
     // Production specific content...
 @endproduction
@@ -144,7 +144,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@hasSection` {.directive-method .first-directive-method}
 
-```php
+```blade
 @hasSection('navigation')
     <div class="pull-right">
         @yield('navigation')
@@ -158,7 +158,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@sectionMissing` {.directive-method .first-directive-method}
 
-```php
+```blade
 @sectionMissing('navigation')
     <div class="pull-right">
         @include('default-navigation')
@@ -170,7 +170,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@switch` {.directive-method .first-directive-method}
 
-```php
+```blade
 @switch($i)
     @case(1)
         First case...
@@ -189,7 +189,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@for` {.directive-method .first-directive-method}
 
-```php
+```blade
 @for ($i = 0; $i < 10; $i++)
     The current value is {{ $i }}
 @endfor
@@ -199,7 +199,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@foreach` {.directive-method .first-directive-method}
 
-```php
+```blade
 @foreach ($users as $user)
     <p>This is user {{ $user->id }}</p>
 @endforeach
@@ -209,7 +209,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@forelse` {.directive-method .first-directive-method}
 
-```php 
+```blade 
 @forelse ($users as $user)
     <li>{{ $user->name }}</li>
 @empty
@@ -221,7 +221,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@while` {.directive-method .first-directive-method}
 
-```php 
+```blade 
 @while (true)
     <p>I'm looping forever.</p>
 @endwhile
@@ -231,7 +231,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@continue` {.directive-method .first-directive-method}
 
-```php
+```blade
 @foreach ($users as $user)
     @if ($user->type == 1)
         @continue
@@ -249,7 +249,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@break` {.directive-method .first-directive-method}
 
-```php
+```blade
 @foreach ($users as $user)
     @continue($user->type == 1)
  
@@ -263,7 +263,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@class` {.directive-method .first-directive-method}
 
-```php
+```blade
 @php
     $isActive = false;
     $hasError = true;
@@ -283,7 +283,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@checked` {.directive-method .first-directive-method}
 
-```php
+```blade
 <input type="checkbox"
         name="active"
         value="active"
@@ -294,7 +294,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@selected` {.directive-method .first-directive-method}
 
-```php
+```blade
 <select name="version">
     @foreach ($product->versions as $version)
         <option value="{{ $version }}" @selected(old('version') == $version)>
@@ -308,7 +308,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@disabled` {.directive-method .first-directive-method}
 
-```php
+```blade
 <button type="submit" @disabled($errors->isNotEmpty())>Submit</button>
 ```
 
@@ -316,7 +316,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@readonly` {.directive-method .first-directive-method}
 
-```php
+```blade
 <input type="email"
         name="email"
         value="email@laravel.com"
@@ -327,7 +327,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@required` {.directive-method .first-directive-method}
 
-```php
+```blade
 <input type="text"
         name="title"
         value="title"
@@ -338,7 +338,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@include` {.directive-method .first-directive-method}
 
-```php
+```blade
 <div>
     @include('shared.errors')
  
@@ -352,7 +352,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@includeIf` {.directive-method .first-directive-method}
 
-```php
+```blade
 @includeIf('view.name', ['status' => 'complete'])
 ```
 
@@ -361,7 +361,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 #### `@includeWhen` {.directive-method .first-directive-method}
 
 
-```php
+```blade
 @includeWhen($boolean, 'view.name', ['status' => 'complete'])
 
 ```
@@ -370,7 +370,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@includeUnless` {.directive-method .first-directive-method}
 
-```php
+```blade
 @includeUnless($boolean, 'view.name', ['status' => 'complete'])
 
 ```
@@ -379,7 +379,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@includeFirst` {.directive-method .first-directive-method}
 
-```php
+```blade
 @includeFirst(['custom.admin', 'admin'], ['status' => 'complete'])
 ```
 
@@ -387,7 +387,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@each` {.directive-method .first-directive-method}
 
-```php
+```blade
 @each('view.name', $jobs, 'job')
 @each('view.name', $jobs, 'job', 'view.empty')
 ```
@@ -396,7 +396,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@once` {.directive-method .first-directive-method}
 
-```php
+```blade
 @once
     @push('scripts')
         <script>
@@ -409,7 +409,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@pushOnce` {.directive-method .first-directive-method}
 
-```php
+```blade
 @pushOnce('scripts')
     <script>
         // Your custom JavaScript...
@@ -420,7 +420,7 @@ title: Blade Directives - A reference of core and third party blade template dir
 
 #### `@verbatim` {.directive-method .first-directive-method}
 
-```php
+```blade
 @verbatim
     <div class="container">
         Hello, {{ name }}.

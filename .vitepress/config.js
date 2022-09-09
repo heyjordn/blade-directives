@@ -51,4 +51,7 @@ export default {
 			copyright: 'Made by Jordan Jones',
 		},
 	},
+	markdown: {
+		theme: 'one-dark-pro',
+	  }
 }
